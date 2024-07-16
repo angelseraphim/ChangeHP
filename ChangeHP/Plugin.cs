@@ -1,5 +1,7 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using MEC;
+using UnityEngine;
 
 namespace ChangeHP
 {
@@ -22,8 +24,11 @@ namespace ChangeHP
         {
             if (Config.HPVal.ContainsKey(ev.NewRole))
             {
-                ev.Player.MaxHealth = Config.HPVal[ev.NewRole];
-                ev.Player.Health = Config.HPVal[ev.NewRole];
+                Timing.CallDelayed(0.1f, () =>
+                {
+                    ev.Player.MaxHealth = Config.HPVal[ev.NewRole];
+                    ev.Player.Health = Config.HPVal[ev.NewRole];
+                });
             }
         }
     }
